@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ServicesIndex from "./pages/Services.tsx";
-import Shop from "./pages/Shop.tsx";
 import GlobalPresence from "./pages/GlobalPresence.tsx";
 import Contact from "./pages/Contact.tsx";
 import Checkout from "./pages/Checkout.tsx";
@@ -21,7 +20,6 @@ import DubaiOffice from "./pages/services/DubaiOffice.tsx";
 import DigitalService from "./pages/services/DigitalService.tsx";
 import Locations from "./pages/services/Locations.tsx";
 import Team from "./pages/Team.tsx";
-import ProductDetail from "./pages/ProductDetail.tsx";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import AdminOverview from "./pages/admin/AdminOverview.tsx";
 import AdminProducts from "./pages/admin/AdminProducts.tsx";
@@ -46,8 +44,6 @@ const App = () => (
               <Route path="/auth" element={<Auth />} />
               <Route path="/team" element={<Team />} />
               <Route path="/services" element={<ServicesIndex />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route path="/shop/:id" element={<ProductDetail />} />
               <Route path="/global-presence" element={<GlobalPresence />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={<Checkout />} />

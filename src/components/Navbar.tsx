@@ -43,7 +43,6 @@ const megaMenuCategories = [
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services", mega: true },
-  { label: "Shop", path: "/shop" },
   { label: "Global Presence", path: "/global-presence" },
   { label: "Team", path: "/team" },
   { label: "Contact", path: "/contact" },
@@ -88,16 +87,14 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
             ? "border-b border-border/40 shadow-sm"
             : "border-b border-transparent"
-        }`}
+          }`}
       >
         <div
-          className={`absolute inset-0 transition-all duration-500 ${
-            scrolled ? "bg-background/80 backdrop-blur-2xl" : "bg-background/40 backdrop-blur-xl"
-          }`}
+          className={`absolute inset-0 transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-2xl" : "bg-background/40 backdrop-blur-xl"
+            }`}
         />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
@@ -121,11 +118,10 @@ const Navbar = () => {
                   onMouseLeave={() => setMegaOpen(false)}
                 >
                   <button
-                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-                      location.pathname.startsWith("/services")
+                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${location.pathname.startsWith("/services")
                         ? "text-primary bg-primary/5"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                    }`}
+                      }`}
                   >
                     {link.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${megaOpen ? "rotate-180" : ""}`} />
@@ -159,23 +155,20 @@ const Navbar = () => {
                                       <Link
                                         key={item.path}
                                         to={item.path}
-                                        className={`group/item flex items-start gap-3 p-3 rounded-xl transition-all duration-200 ${
-                                          isActive(item.path)
+                                        className={`group/item flex items-start gap-3 p-3 rounded-xl transition-all duration-200 ${isActive(item.path)
                                             ? "bg-primary/10 border border-primary/20"
                                             : "hover:bg-secondary/50 border border-transparent"
-                                        }`}
+                                          }`}
                                       >
-                                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${
-                                          isActive(item.path)
+                                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${isActive(item.path)
                                             ? "bg-primary/20 text-primary"
                                             : "bg-secondary/60 text-muted-foreground group-hover/item:bg-primary/15 group-hover/item:text-primary"
-                                        }`}>
+                                          }`}>
                                           <Icon className="w-4 h-4" />
                                         </div>
                                         <div className="min-w-0">
-                                          <span className={`text-sm font-semibold block transition-colors ${
-                                            isActive(item.path) ? "text-primary" : "text-foreground"
-                                          }`}>
+                                          <span className={`text-sm font-semibold block transition-colors ${isActive(item.path) ? "text-primary" : "text-foreground"
+                                            }`}>
                                             {item.label}
                                           </span>
                                           <span className="text-xs text-muted-foreground leading-tight">{item.desc}</span>
@@ -213,11 +206,10 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-                    isActive(link.path)
+                  className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${isActive(link.path)
                       ? "text-primary bg-primary/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                  }`}
+                    }`}
                 >
                   {isActive(link.path) && (
                     <motion.div
@@ -239,11 +231,10 @@ const Navbar = () => {
                 onMouseLeave={() => setAdminOpen(false)}
               >
                 <button
-                  className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-                    location.pathname.startsWith("/admin")
+                  className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${location.pathname.startsWith("/admin")
                       ? "text-primary bg-primary/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                  }`}
+                    }`}
                 >
                   <LayoutDashboard className="w-3.5 h-3.5 mr-1" />
                   Admin
@@ -268,11 +259,10 @@ const Navbar = () => {
                               <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                                  active
+                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${active
                                     ? "text-primary bg-primary/10"
                                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                                }`}
+                                  }`}
                               >
                                 <Icon className="w-4 h-4" />
                                 {item.label}
@@ -289,7 +279,7 @@ const Navbar = () => {
           </div>
 
           {/* CTA + Auth + Mobile toggle */}
-           <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             {user ? (
               <button
@@ -351,11 +341,10 @@ const Navbar = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                          location.pathname.startsWith("/services")
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${location.pathname.startsWith("/services")
                             ? "text-primary bg-primary/5"
                             : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                        }`}
+                          }`}
                       >
                         {link.label}
                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`} />
@@ -379,9 +368,8 @@ const Navbar = () => {
                                         key={item.path}
                                         to={item.path}
                                         onClick={() => setOpen(false)}
-                                        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${
-                                          isActive(item.path) ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
-                                        }`}
+                                        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${isActive(item.path) ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                                          }`}
                                       >
                                         <Icon className="w-4 h-4" />
                                         {item.label}
@@ -407,11 +395,10 @@ const Navbar = () => {
                       key={link.path}
                       to={link.path}
                       onClick={() => setOpen(false)}
-                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                        isActive(link.path)
+                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive(link.path)
                           ? "text-primary bg-primary/5"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                      }`}
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -428,11 +415,10 @@ const Navbar = () => {
                           key={item.path}
                           to={item.path}
                           onClick={() => setOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                            (item.path === "/admin" ? location.pathname === "/admin" : location.pathname.startsWith(item.path))
+                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${(item.path === "/admin" ? location.pathname === "/admin" : location.pathname.startsWith(item.path))
                               ? "text-primary bg-primary/5"
                               : "text-muted-foreground hover:text-foreground"
-                          }`}
+                            }`}
                         >
                           <Icon className="w-4 h-4" />
                           {item.label}

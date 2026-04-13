@@ -321,7 +321,7 @@ const HeroSection = () => {
   const rotationControl = useRef(0);
 
   return (
-    <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden bg-transparent ">
+    <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden bg-transparent backdrop-blur-[4px]">
       {/* Cinematic animated gradient background */}
 
 
@@ -346,7 +346,7 @@ const HeroSection = () => {
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <span className="text-xs text-primary font-semibold tracking-wider uppercase">
-                Global Business Solutions
+                YOUR GLOBAL SOURCING PARTNER
               </span>
             </motion.div>
 
@@ -354,7 +354,7 @@ const HeroSection = () => {
               className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-7 tracking-[-0.02em]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {"Empowering".split("").map((char, i) => (
+              {"We Make".split("").map((char, i) => (
                 <motion.span
                   key={`e-${i}`}
                   className="inline-block text-foreground"
@@ -366,7 +366,16 @@ const HeroSection = () => {
                 </motion.span>
               ))}
               <br />
-              {"Businesses".split("").map((char, i) => (
+              <motion.span
+                className="text-gradient-cyan inline-block"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Global Business 
+              </motion.span>
+              <br />
+              {"Easy for You.".split("").map((char, i) => (
                 <motion.span
                   key={`b-${i}`}
                   className="inline-block text-foreground"
@@ -377,15 +386,7 @@ const HeroSection = () => {
                   {char}
                 </motion.span>
               ))}
-              <br />
-              <motion.span
-                className="text-gradient-cyan inline-block"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Worldwide
-              </motion.span>
+              
             </h1>
 
             <motion.p
@@ -394,7 +395,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.7 }}
             >
-              From government procurement to digital transformation — RH International delivers integrated B2B & B2C solutions across continents.
+             Whether you need to win government tenders, source premium commercial printing, or build a scalable digital brand, we’ve got you covered. We simplify complex challenges so you can focus on growing your business.
             </motion.p>
 
             <motion.div
@@ -412,14 +413,14 @@ const HeroSection = () => {
                   animate={{ x: ["-100%", "200%"] }}
                   transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
                 />
-                <span className="relative">Explore Services</span>
+                <span className="relative">Explore Our Services</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform relative" />
               </Link>
               <Link
                 to="/contact"
                 className="px-7 py-3.5 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground transition-all border border-border/30 bg-secondary/30 backdrop-blur-sm flex items-center gap-2 hover:border-primary/30"
               >
-                Contact Us
+                Let's Talk
               </Link>
             </motion.div>
           </motion.div>
@@ -443,7 +444,7 @@ const HeroSection = () => {
             </Canvas>
 
             {/* Buttons */}
-            <div className="absolute bottom-0 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-20">
               <button
                 onClick={() => (rotationControl.current -= 0.01)}
                 className="px-4 sm:px-6 py-2 bg-white/10 text-white rounded-full text-xs"

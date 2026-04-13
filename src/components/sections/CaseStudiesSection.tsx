@@ -6,57 +6,57 @@ import { useState } from "react";
 const caseStudies = [
   {
     id: 1,
-    title: "National Infrastructure Procurement Contract",
-    client: "Ministry of Public Works",
-    industry: "Government",
+    title: "Winning a Major National Infrastructure Bid",
+    client: "Infrastructure Project",
+    industry: "GOVERNMENT",
     icon: Award,
     metrics: [
       { label: "Contract Value", value: "$2.4M" },
       { label: "Success Rate", value: "98%" },
     ],
-    description: "Secured a major infrastructure procurement contract through strategic bidding, compliance documentation, and competitive pricing analysis.",
+    description: "Navigating government bids is tough. We stepped in to handle the complex documentation and strategic pricing, helping our client secure a massive infrastructure contract smoothly.",
     tags: ["Procurement", "Strategy", "Documentation"],
     result: "Won against 12 competing firms",
   },
   {
     id: 2,
-    title: "500K+ Unit Retail Printing Rollout",
-    client: "National Retail Group",
-    industry: "Printing",
+    title: "Delivering 500K+ Branded Items Ahead of Time",
+    client: "National Retail Chain",
+    industry: "COMMERCIAL PRINTING",
     icon: Printer,
     metrics: [
       { label: "Units Delivered", value: "500K+" },
       { label: "Time Saved", value: "40%" },
     ],
-    description: "Delivered branded PVC cards and custom tote bags for a nationwide retail rollout — zero defects, ahead of schedule.",
+    description: "When a major retail brand needed half a million custom PVC cards and tote bags in record time, we delivered the entire batch flawlessly—without a single defect.",
     tags: ["PVC Cards", "Bag Printing", "Bulk"],
     result: "Delivered 2 weeks early",
   },
   {
     id: 3,
-    title: "E-Commerce Digital Transformation",
-    client: "Tech Startup Inc.",
-    industry: "Digital",
+    title: "Scaling Revenue with a Modern E-Commerce Build",
+    client: "Scaling Tech Brand",
+    industry: "DIGITAL",
     icon: Monitor,
     metrics: [
       { label: "Traffic Growth", value: "320%" },
       { label: "Revenue Boost", value: "185%" },
     ],
-    description: "Built a high-performance e-commerce platform with SEO optimization — 3x traffic and nearly doubled revenue in 6 months.",
+    description: "We didn’t just build a fast website; we built a revenue engine. With advanced SEO and a modern tech stack, we helped this brand triple their traffic and double their sales in just six months.",
     tags: ["Web Dev", "SEO", "E-Commerce"],
     result: "ROI in under 4 months",
   },
   {
     id: 4,
-    title: "200+ Professional Visa Processing",
-    client: "Global Consulting Firm",
-    industry: "Travel",
+    title: "Flawless Visa Processing for 200+ Professionals",
+    client: "Corporate Delegation",
+    industry: "TRAVEL",
     icon: Plane,
     metrics: [
       { label: "Applications", value: "200+" },
       { label: "Approval Rate", value: "99%" },
     ],
-    description: "Managed visa applications and relocation logistics across Portugal, Spain, and Denmark with near-perfect approval.",
+    description: "Corporate travel to Europe can be a logistical nightmare. We managed the entire visa and relocation process for Portugal, Spain, and Denmark with a near-perfect success rate.",
     tags: ["Visa", "Relocation", "EU"],
     result: "99% first-attempt approval",
   },
@@ -98,7 +98,7 @@ const CaseStudiesSection = () => {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-sm leading-relaxed max-w-sm lg:text-right"
           >
-            From government contracts to digital platforms — see how we've delivered extraordinary outcomes for our clients.
+           Don't just take our word for it. See how we’ve helped businesses win big, scale faster, and solve complex challenges across the globe.
           </motion.p>
         </div>
 

@@ -3,9 +3,9 @@ import { ArrowRight, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const contactMethods = [
-  { icon: Mail, label: "Email Us", value: "info@rhinternational.com", href: "mailto:info@rhinternational.com" },
-  { icon: Phone, label: "Call Us", value: "+880 1234 567890", href: "tel:+8801234567890" },
-  { icon: MapPin, label: "Visit Us", value: "Gulshan, Dhaka", href: "/global-presence" },
+  { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com" },
+  { icon: Phone, label: "Call Us", value: "+880 1319-855960", href: "tel:+8801319855960" },
+  { icon: MapPin, label: "Visit Us", value: "Zahir Uddin Market, Mirer Bazar, Pubail, Gazipur", href: "/global-presence" },
 ];
 
 const CTASection = () => (
@@ -39,11 +39,11 @@ const CTASection = () => (
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Let's Build{" "}
-                <span className="text-gradient-cyan">Something Great</span>
+                <span className="text-gradient-cyan">Something Together</span>
               </h2>
 
               <p className="text-muted-foreground text-base leading-relaxed mb-10 max-w-lg">
-                Ready to explore how RH International can accelerate your business? Get a tailored proposal within 48 hours.
+                Whether you need support with a complex government tender, bulk commercial printing, or a highly scalable digital platform—we are ready. Let's discuss your goals and get you a tailored proposal within 48 hours.
               </p>
 
               {/* CTA buttons */}
@@ -149,11 +149,11 @@ const CTASection = () => (
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <p className="text-[10px] text-muted-foreground/50 uppercase tracking-wider font-medium mb-0.5">Dhaka Office</p>
-                    <p className="text-xs text-muted-foreground">Sun–Thu · 9AM–6PM</p>
+                    <p className="text-xs text-muted-foreground">Sat - Thu • 9AM - 6PM</p>
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-foreground/50 uppercase tracking-wider font-medium mb-0.5">Dubai Office</p>
-                    <p className="text-xs text-muted-foreground">Sun–Thu · 9AM–6PM</p>
+                    <p className="text-xs text-muted-foreground">Mon - Fri • 9AM - 6PM</p>
                   </div>
                 </div>
               </motion.div>

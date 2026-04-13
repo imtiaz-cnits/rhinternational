@@ -5,33 +5,33 @@ import { Link } from "react-router-dom";
 
 const faqs = [
   {
-    q: "What services does RH International offer?",
-    a: "We provide comprehensive B2B and B2C solutions including government tender consultancy, commercial printing (PVC & bag printing), IT solutions (web development, SEO), travel visa consultation, Dubai office operations, and digital transformation services.",
+    q: "What exactly does RH International do?",
+    a: "Think of us as your all-in-one business growth partner. We handle everything from winning government tenders and bulk commercial printing, to building ultra-modern IT & e-commerce platforms, and even managing European travel visas.",
     category: "General",
   },
   {
-    q: "Which countries do you operate in?",
-    a: "We have offices and operations in Bangladesh, UAE (Dubai), Portugal, Spain, and Denmark. Our services extend globally through our partner network.",
+    q: "Where are you located, and which countries do you serve?",
+    a: "Our main corporate hubs are in Dhaka, Bangladesh, and Dubai, UAE. However, through our strong global network, we actively serve clients worldwide, with a specialized focus on Europe (Portugal, Spain, Denmark) and the Middle East.",
     category: "General",
   },
   {
-    q: "How do I get started with your services?",
-    a: "Simply click 'Get a Quote' or contact us through the Contact page. Our team will schedule a consultation to understand your needs and propose a tailored solution within 48 hours.",
+    q: "I'm interested. How do we start working together?",
+    a: "It’s super easy! Just hit the 'Get a Quote' or 'Contact' button. We’ll jump on a quick consultation call to understand your needs and give you a clear, tailored action plan within 48 hours.",
     category: "Getting Started",
   },
   {
-    q: "Do you handle government tenders internationally?",
-    a: "Yes, we specialize in government procurement across multiple jurisdictions. Our team handles tender identification, documentation, compliance, and bid strategy to maximize your success rate.",
+    q: "Do you only manage government tenders locally?",
+    a: "While we have deep expertise in the Bangladeshi e-GP system, our sourcing and procurement capabilities extend globally. We help businesses prepare documents, bid strategically, and win high-value contracts seamlessly.",
     category: "Services",
   },
   {
-    q: "What is the typical turnaround time for printing orders?",
-    a: "Standard printing orders (PVC cards, business cards) are delivered within 5-7 business days. Bulk orders and custom projects are quoted individually based on scope and quantity.",
+    q: "How fast can you deliver bulk printing and packaging orders?",
+    a: "We move fast! Standard items like PVC cards are usually ready within 5-7 business days. For massive bulk orders or custom bags, we’ll give you a precise and realistic timeline upfront so your business never faces delays.",
     category: "Services",
   },
   {
-    q: "Do you offer ongoing support after project delivery?",
-    a: "Absolutely. We provide 24/7 support across all time zones. Every client is assigned a dedicated account manager for consistent communication and ongoing assistance.",
+    q: "What happens after our project is finished? Do you still provide support?",
+    a: "Absolutely. We don't just deliver and disappear. Whether it's IT maintenance, digital marketing, or future sourcing needs, your dedicated account manager will be available 24/7 to support your ongoing growth.",
     category: "Support",
   },
 ];
@@ -64,7 +64,7 @@ const FAQSection = () => {
               <span className="text-gradient-cyan">Answers.</span>
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
-              Everything you need to know about working with RH International. Can't find what you're looking for?
+              Got questions? We've got answers. If you don't see what you're looking for, just drop us a message and our team will get back to you!
             </p>
 
             {/* Contact CTA */}

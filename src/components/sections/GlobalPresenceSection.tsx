@@ -6,25 +6,25 @@ import { Link } from "react-router-dom";
 const offices = [
   {
     city: "Dubai, UAE",
-    label: "Regional HQ",
+    label: "Regional Hub",
     address: "Business Bay, Dubai, UAE",
     phone: "+971 4 XXX XXXX",
-    email: "dubai@rhinternational.com",
-    highlight: true,
+    email: "dubai@rhinternationalsc.com",
+    highlight: true, 
     timezone: "GMT+4",
-    services: ["Company Formation", "Trade Facilitation", "PRO Services"],
+    services: ["Corporate Setup", "Trade Facilitation", "Business Verification"],
     x: 590,
     y: 215,
   },
   {
     city: "Dhaka, Bangladesh",
-    label: "Head Office",
-    address: "Gulshan, Dhaka, Bangladesh",
-    phone: "+880 1234 567890",
-    email: "info@rhinternational.com",
+    label: "Headquarters",
+    address: "[আপনার ঢাকার অফিসের অ্যাড্রেস]", 
+    phone: "+880 1319-855960",
+    email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
-    services: ["Govt Tenders", "Printing Press", "IT Solutions", "Travel"],
+    services: ["Govt Tenders", "Bulk Printing", "IT & Digital"],
     x: 665,
     y: 230,
   },
@@ -105,7 +105,7 @@ const GlobalPresenceSection = () => {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-sm leading-relaxed max-w-sm lg:text-right"
           >
-            Strategically positioned in Asia, the Middle East, and Europe — delivering local expertise with global reach.
+            With strong physical presences in key global hubs, we bridge the gap between Asia, the Middle East, and Europe. Wherever you do business, our local experts are ready to assist.
           </motion.p>
         </div>
 

@@ -3,12 +3,11 @@ import { Mail, Send } from "lucide-react";
 import { useState } from "react";
 
 const serviceLinks = [
-  { label: "Govt Tender", path: "/services/govt-tender" },
-  { label: "Printing Press", path: "/services/printing-press" },
-  { label: "IT Solution", path: "/services/it-solution" },
-  { label: "Travel Consultation", path: "/services/travel-consultation" },
-  { label: "Dubai Office", path: "/services/dubai-office" },
-  { label: "Digital Service", path: "/services/digital-service" },
+  { label: "Commercial Printing", path: "/services/govt-tender" },
+  { label: "IT & Web Solutions", path: "/services/printing-press" },
+  { label: "European Visa Advisory", path: "/services/it-solution" },
+  { label: "Global Sourcing (Dubai)", path: "/services/travel-consultation" },
+  { label: "Digital & E-Commerce", path: "/services/dubai-office" },
 ];
 
 const quickLinks = [
@@ -85,13 +84,13 @@ const Footer = () => {
           {/* Newsletter */}
           <div>
             <h4 className="text-xs font-semibold text-foreground mb-4 tracking-widest uppercase">Newsletter</h4>
-            <p className="text-sm text-muted-foreground mb-4">Subscribe for updates and insights.</p>
+            <p className="text-sm text-muted-foreground mb-4">Stay ahead of the curve. Get exclusive global business insights, tender updates, and sourcing trends delivered straight to your inbox.</p>
             <div className="flex items-center gap-2">
               <div className="relative flex-1">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground/50" />
                 <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Email address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-9 pr-3 py-2.5 text-sm bg-secondary/30 border border-border/30 rounded-full text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/40 transition-colors"
@@ -106,7 +105,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} RH International Sourcing Center. All rights reserved.
+            © {new Date().getFullYear()} 2026 RH International Sourcing Center. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {legalLinks.map((l) => (

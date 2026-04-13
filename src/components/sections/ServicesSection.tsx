@@ -8,25 +8,25 @@ import { useRef, useState } from "react";
 const services = [
   {
     title: "Government Tenders",
-    desc: "End-to-end procurement support — tender identification, documentation, bid submission & contract management.",
+    desc: "We simplify the complex e-GP bidding process. From preparing flawless documents to final submission, we help you win high-value government contracts.",
     icon: Landmark,
     path: "/services/govt-tender",
     number: "01",
     accent: "213 55% 50%",
-    tags: ["Procurement", "Compliance", "Strategy"],
+    tags: ["e-GP", "Bidding", "Compliance"],
   },
   {
-    title: "Printing Press",
-    desc: "High-quality commercial printing — PVC cards, packaging, and large-format solutions.",
+    title: "Commercial Printing",
+    desc: "Premium bulk printing done right. We deliver high-quality PVC materials, custom packaging, and large-format solutions on time, every time.",
     icon: Printer,
     path: "/services/printing-press",
     number: "02",
     accent: "280 50% 55%",
-    tags: ["PVC", "Packaging", "Bulk"],
+    tags: ["PVC", "Packaging", "Bulk Print"],
   },
   {
     title: "IT Solutions",
-    desc: "Web development, SEO, cloud infrastructure, and custom software delivery.",
+    desc: "Fast, secure, and modern digital platforms. We build advanced web applications and provide cloud infrastructures that drive real business results.",
     icon: Monitor,
     path: "/services/it-solution",
     number: "03",
@@ -35,21 +35,21 @@ const services = [
   },
   {
     title: "Travel Consultation",
-    desc: "Premium visa advisory and travel facilitation for Portugal, Spain & Denmark.",
+    desc: "Your smooth gateway to Europe. We provide expert visa processing and hassle-free travel support specifically for Portugal, Spain, and Denmark.",
     icon: Plane,
     path: "/services/travel-consultation",
     number: "04",
     accent: "35 70% 50%",
-    tags: ["Visa", "EU", "Relocation"],
+    tags: ["Schengen", "Visa", "Corporate Travel"],
   },
   {
-    title: "Digital Services",
-    desc: "Strategic digital transformation, branding, and business consultation.",
+    title: "Digital & E-Commerce",
+    desc: "Turn your ideas into a global brand. We offer strategic digital marketing, branding, and highly scalable e-commerce solutions to maximize your revenue.",
     icon: Lightbulb,
     path: "/services/digital-service",
     number: "05",
     accent: "340 50% 55%",
-    tags: ["Branding", "Consultation", "Digital"],
+    tags: ["E-Commerce", "Branding", "Strategy"],
   },
 ];
 
@@ -217,7 +217,7 @@ const ServicesSection = () => (
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs text-primary font-semibold tracking-wider uppercase">Core Services</span>
+            <span className="text-xs text-primary font-semibold tracking-wider uppercase">WHAT WE DO</span>
           </div>
           <h2
             className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-foreground"
@@ -236,7 +236,7 @@ const ServicesSection = () => (
           transition={{ delay: 0.1 }}
           className="text-muted-foreground text-sm leading-relaxed max-w-sm lg:text-right"
         >
-          Five integrated verticals — one partner. From government procurement to digital transformation.
+           Everything you need to scale your business, under one roof. From winning government tenders to complete digital transformation, we are your strategic partner.
         </motion.p>
       </div>
 

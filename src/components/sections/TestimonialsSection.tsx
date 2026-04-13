@@ -4,20 +4,20 @@ import { Star, Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Ahmed Al-Rashid",
-    role: "CEO, Gulf Trading Corp",
-    text: "RH International helped us secure government contracts worth over $2M. Their tender documentation and bid strategy were impeccable.",
+    role: "CEO, Gulf Trading Corp.",
+    text: "We were struggling to navigate the complexities of government bidding. The team at RH International didn't just help us understand the process—they completely handled the documentation and helped us win a massive contract. Highly recommended!",
     rating: 5,
   },
   {
     name: "Sarah Müller",
     role: "Operations Director, EuroTech GmbH",
-    text: "The IT solutions team delivered our e-commerce platform ahead of schedule. Traffic grew 300% within the first quarter.",
+    text: "Honestly, their IT team exceeded all our expectations. They built our entire e-commerce platform from scratch and even got it delivered ahead of schedule. Since launch, our online traffic has more than tripled. Incredible work.",
     rating: 5,
   },
   {
     name: "Dr. Kamal Hossain",
-    role: "Managing Director, Dhaka Exports Ltd",
-    text: "From PVC card printing to international shipping — they handled everything. Quality and reliability you can count on.",
+    role: "Managing Director, Dhaka Exports Ltd.",
+    text: "Whether it’s bulk PVC card printing or handling large-scale packaging for our exports, they manage everything perfectly. It’s rare to find a partner who takes quality control as seriously as we do. They are our go-to team.",
     rating: 5,
   },
 ];
@@ -44,7 +44,7 @@ const TestimonialsSection = () => (
           What Our Clients <span className="text-gradient-cyan">Say</span>
         </h2>
         <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-          Don't just take our word for it — hear from the businesses we've helped grow.
+         Don’t just take our word for it. Here’s what real businesses have to say about working with our team.
         </p>
       </motion.div>
 

@@ -1,197 +1,273 @@
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, Play, Database, Globe as GlobeIcon, UserPlus, MousePointer2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useMemo, useRef, Suspense } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Sphere, Html, Float, Stars, Line } from "@react-three/drei";
+import { useMemo, useRef, Suspense, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { OrbitControls, Sphere, Html, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
-// --- 3D Globe Sub-Components ---
+// --- Surface Image Card ---
+const SurfaceImageCard = ({
+  lat,
+  lon,
+  url,
+  radius,
+}: {
+  lat: number;
+  lon: number;
+  url: string;
+  radius: number;
+}) => {
+  const { viewport } = useThree();
 
-const RealGlobe = () => {
-  const [dayMap, nightMap] = useLoader(THREE.TextureLoader, [
-    "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg",
-    "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_lights_2048.png"
-  ]);
+  // responsive distance
+  const responsiveFactor = Math.min(viewport.width / 10, 1) * 10;
+
+  const position = useMemo(() => {
+    const phi = (90 - lat) * (Math.PI / 180);
+
+    const SHIFT_THETA = 0.25;
+    const theta = (lon + 180) * (Math.PI / 180) + SHIFT_THETA;
+
+    const offset = 0.015 * Math.sin(lat * 2);
+
+    return [
+      -radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.cos(phi) + offset,
+      radius * Math.sin(phi) * Math.sin(theta),
+    ] as [number, number, number];
+  }, [lat, lon, radius]);
+
+  const groupRef = useRef<THREE.Group>(null);
+
+  useEffect(() => {
+    if (groupRef.current) {
+      groupRef.current.lookAt(new THREE.Vector3(0, 0, 0));
+      groupRef.current.rotateX(Math.PI);
+      groupRef.current.rotateZ(Math.PI);
+    }
+  }, [position]);
 
   return (
-    <group>
-      <Sphere args={[3, 64, 64]}>
-        <meshStandardMaterial map={dayMap} roughness={0.7} metalness={0.2} />
-      </Sphere>
-      <Sphere args={[3.015, 64, 64]}>
-        <meshStandardMaterial 
-          map={nightMap} 
-          transparent 
-          opacity={0.5} 
-          blending={THREE.AdditiveBlending} 
-        />
-      </Sphere>
+    <group position={position} ref={groupRef}>
+      <Html transform occlude distanceFactor={responsiveFactor}>
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          className="w-8 h-6 sm:w-9 sm:h-6 md:w-10 md:h-7 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm overflow-hidden shadow-[0_0_10px_rgba(0,255,255,0.2)] cursor-pointer group"
+        >
+          <img
+            src={url}
+            alt="client"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          />
+        </motion.div>
+      </Html>
     </group>
   );
 };
 
-const OrbitRings = () => {
-  const orbits = useMemo(() => {
-    const data = [];
-    for (let i = 0; i < 4; i++) {
-      const points = [];
-      const radius = 3.8 + i * 0.5;
-      for (let j = 0; j <= 64; j++) {
-        const angle = (j / 64) * Math.PI * 2;
-        points.push(new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, 0));
-      }
-      data.push(points);
+// --- Globe Scene ---
+const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
+  const globeRef = useRef<THREE.Group>(null);
+  const ringRefs = useRef<THREE.Mesh[]>([]);
+  const { viewport } = useThree();
+
+  const BASE_RADIUS = 3.2;
+
+  // responsive scale
+  const sceneScale = Math.min(viewport.width / 5, 1.2);
+
+  const dynamicRadius = BASE_RADIUS * sceneScale;
+
+  useFrame(() => {
+    const baseSpeed = viewport.width < 6 ? 0.0015 : 0.0025;
+
+    if (globeRef.current) {
+      globeRef.current.rotation.y += baseSpeed + rotationControl.current;
     }
-    return data;
+
+    ringRefs.current.forEach((ring, i) => {
+      if (ring) {
+        const speeds = [0.002, -0.0025, 0.003, -0.0015, 0.0022];
+        const speed = speeds[i] || 0.002;
+
+        ring.rotation.x += speed;
+        ring.rotation.y += speed * 0.6;
+        ring.rotation.z += speed * 0.4;
+      }
+    });
+  });
+
+  const rows = [
+    { lat: 45, count: 14 },
+    { lat: 20, count: 20 },
+    { lat: -20, count: 20 },
+    { lat: -45, count: 14 },
+  ];
+
+  const images = useMemo(() => {
+    const temp: any[] = [];
+    rows.forEach((row, rowIdx) => {
+      for (let i = 0; i < row.count; i++) {
+        const offset = rowIdx % 2 === 0 ? 0 : (360 / row.count) / 2;
+        const lon = (i / row.count) * 360 + offset;
+        temp.push({
+          lat: row.lat,
+          lon: lon,
+          url: `https://picsum.photos/seed/${row.lat + i}/100/70`,
+        });
+      }
+    });
+    return temp;
   }, []);
 
   return (
-    <group rotation={[Math.PI / 3, 0.2, 0]}>
-      {orbits.map((pts, i) => (
-        <Line key={i} points={pts} color="#2dd4bf" lineWidth={0.5} opacity={0.2} transparent dashed dashSize={0.2} />
-      ))}
-    </group>
-  );
-};
+    <group scale={sceneScale}>
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[5, 3, 5]} intensity={2} color="#00ffff" />
+      <pointLight position={[-10, -10, -10]} intensity={1} color="#0088ff" />
 
-const MetricTag = ({ position, label, value, Icon }: any) => (
-  <Html position={position} center distanceFactor={10}>
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-primary/30 flex items-center gap-3 shadow-2xl"
-    >
-      <div className="text-primary"><Icon size={16} /></div>
-      <div className="whitespace-nowrap">
-        <div className="text-sm font-bold text-white">{value}</div>
-        <div className="text-[8px] text-gray-400 uppercase tracking-widest font-bold">{label}</div>
-      </div>
-    </motion.div>
-  </Html>
-);
+      <group ref={globeRef}>
+        {/* Globe */}
+        <Sphere args={[BASE_RADIUS, 64, 64]}>
+          <meshStandardMaterial
+            color="#010a15"
+            emissive="#002233"
+            roughness={0.2}
+            metalness={0.8}
+            transparent
+            opacity={0.9}
+          />
+        </Sphere>
 
-const GlobeScene = () => {
-  const groupRef = useRef<any>();
-  useFrame(() => { if (groupRef.current) groupRef.current.rotation.y += 0.0015; });
+        {/* Grid */}
+        <Sphere args={[BASE_RADIUS + 0.01, 32, 32]}>
+          <meshBasicMaterial
+            color="#00ffff"
+            wireframe
+            transparent
+            opacity={0.06}
+            blending={THREE.AdditiveBlending}
+          />
+        </Sphere>
 
-  return (
-    <group ref={groupRef}>
-      <RealGlobe />
-      <OrbitRings />
-      <MetricTag position={[4.2, 2.5, 0]} label="Projects" value="100+" Icon={Database} />
-      <MetricTag position={[-4.2, -1.8, 2]} label="Countries" value="5+" Icon={GlobeIcon} />
-      <MetricTag position={[0, 4.5, -2]} label="Verticals" value="7+" Icon={UserPlus} />
-    </group>
-  );
-};
-
-// --- Background Components (Original) ---
-
-const Particles = () => {
-  const particles = useMemo(() => Array.from({ length: 40 }, (_, i) => ({
-    id: i, x: Math.random() * 100, y: Math.random() * 100,
-    size: Math.random() * 3 + 1, duration: Math.random() * 15 + 10,
-    delay: Math.random() * 5, opacity: Math.random() * 0.3 + 0.05,
-  })), []);
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {particles.map((p) => (
-        <motion.div key={p.id} className="absolute rounded-full bg-primary"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
-          animate={{ y: [0, -80, -160], x: [0, Math.random() > 0.5 ? 30 : -30, 0], opacity: [0, p.opacity, 0], scale: [0, 1, 0.5] }}
-          transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "easeInOut" }}
-        />
-      ))}
-    </div>
-  );
-};
-
-const HeroSection = () => {
-  return (
-    <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Cinematic Backgrounds */}
-      <div className="absolute inset-0 bg-background dark:bg-[#020617]">
-        <Particles />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.08),transparent_70%)]" />
-        <motion.div 
-            animate={{ opacity: [0.04, 0.08, 0.04] }} 
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute inset-0"
-            style={{ backgroundImage: `linear-gradient(hsl(var(--primary)/0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)/0.07) 1px, transparent 1px)`, backgroundSize: "80px 80px" }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left Side Content (Keeping your original) */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        {/* Orbit Rings */}
+        {[
+          { r: BASE_RADIUS + 0.3 },
+          { r: BASE_RADIUS + 0.5 },
+          { r: BASE_RADIUS + 0.7 },
+          { r: BASE_RADIUS + 0.9 },
+          { r: BASE_RADIUS + 1.1 },
+        ].map((orbit, i) => (
+          <mesh
+            key={i}
+            ref={(el) => (ringRefs.current[i] = el!)}
+            rotation={[
+              Math.random() * Math.PI,
+              Math.random() * Math.PI,
+              Math.random() * Math.PI,
+            ]}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-8"
-            >
-              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs text-primary font-semibold tracking-wider uppercase">Global Business Solutions</span>
-            </motion.div>
+            <torusGeometry args={[orbit.r, 0.003, 16, 100]} />
+            <meshBasicMaterial
+              color="#00ffff"
+              transparent
+              opacity={0.08 + i * 0.04}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+        ))}
 
-            <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-7 tracking-[-0.02em] text-foreground">
-              Empowering<br />Businesses<br />
-              <span className="text-gradient-cyan">Worldwide</span>
+        {/* Images */}
+        {images.map((img, i) => (
+          <SurfaceImageCard
+            key={i}
+            lat={img.lat}
+            lon={img.lon}
+            url={img.url}
+            radius={dynamicRadius + 0.05}
+          />
+        ))}
+      </group>
+
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
+      />
+    </group>
+  );
+};
+
+// --- Hero Section ---
+const HeroSection = () => {
+  const rotationControl = useRef(0);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020611]">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-cyan-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full pt-20 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
+
+          {/* LEFT */}
+          <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase mb-6">
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+              Global Business Solutions
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              Empowering <br />
+              <span className="text-cyan-400">Businesses</span> <br />
+              Worldwide
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed mb-10">
-              From government procurement to digital transformation — RH International delivers integrated B2B & B2C solutions across continents.
+            <p className="text-sm sm:text-base md:text-lg text-slate-400 mb-8">
+              Join our network of global clients with 24/7 support.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4">
-              <Link to="/services" className="px-7 py-3.5 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(45,212,191,0.3)]">
-                Explore Services <ArrowRight size={16} />
-              </Link>
-              <Link to="/contact" className="px-7 py-3.5 rounded-xl text-sm font-semibold text-muted-foreground border border-border/30 bg-secondary/30 backdrop-blur-sm hover:text-foreground transition-all">
-                Contact Us
-              </Link>
-            </div>
+            <Link to="/services" className="px-6 py-3 bg-cyan-500 text-black rounded-full">
+              Explore Services
+            </Link>
           </motion.div>
 
-          {/* Right Side - Realistic 3D Globe */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="relative h-[500px] lg:h-[700px] w-full"
-          >
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center text-primary/50 text-xs font-bold tracking-[0.2em] animate-pulse">
-                INITIALIZING GLOBAL INTEL...
+          {/* RIGHT */}
+          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px]">
+
+            {/* Cursor */}
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+              <div className="flex flex-col items-center">
+                <MousePointer2 className="text-cyan-400 animate-bounce w-4 h-4 sm:w-6 sm:h-6" />
+                <span className="text-[10px] sm:text-xs text-white">GLOBAL CLIENTS</span>
               </div>
-            }>
-              <Canvas camera={{ position: [0, 0, 12], fov: 45 }} dpr={[1, 2]}>
-                <ambientLight intensity={0.6} />
-                <directionalLight position={[5, 3, 5]} intensity={1.5} color="#ffffff" />
-                <pointLight position={[-5, -5, -5]} intensity={0.5} color="#2dd4bf" />
-                <Stars radius={100} depth={50} count={5000} factor={4} fade speed={1} />
-                
-                <GlobeScene />
-                <OrbitControls enableZoom={false} autoRotate={false} />
-              </Canvas>
-            </Suspense>
-
-            {/* Interaction Hint */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4">
-               <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
-                  <MousePointer2 size={14} className="text-primary" />
-                  <span className="text-[10px] text-white/70 uppercase tracking-widest font-bold">Drag to explore globe</span>
-               </div>
             </div>
-          </motion.div>
 
+            <Canvas className="z-0" camera={{ position: [0, 0, 18], fov: 35 }}>
+              <Suspense fallback={null}>
+                <GlobeScene rotationControl={rotationControl} />
+                <Stars radius={100} depth={50} count={1500} factor={4} fade />
+              </Suspense>
+            </Canvas>
+
+            {/* Buttons */}
+            <div className="absolute bottom-0 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+              <button
+                onClick={() => (rotationControl.current += 0.01)}
+                className="px-4 sm:px-6 py-2 bg-emerald-400 text-black rounded-full text-xs"
+              >
+                Next
+              </button>
+
+              <button
+                onClick={() => (rotationControl.current -= 0.01)}
+                className="px-4 sm:px-6 py-2 bg-white/10 text-white rounded-full text-xs"
+              >
+                Prev
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

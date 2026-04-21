@@ -17,6 +17,8 @@ interface ServicePageLayoutProps {
   icon: LucideIcon;
   features: Feature[];
   highlights?: string[];
+  primaryCtaText?: string;
+  secondaryCtaText?: string;
   children?: React.ReactNode;
 }
 
@@ -27,6 +29,8 @@ const ServicePageLayout = ({
   icon: Icon,
   features,
   highlights,
+  primaryCtaText = "Contact Us",
+  secondaryCtaText = "View All Services",
   children,
 }: ServicePageLayoutProps) => {
   return (
@@ -89,7 +93,7 @@ const ServicePageLayout = ({
             className="text-2xl font-bold text-foreground mb-8 tracking-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Our Core Tender Services
+            Our Core IT & Digital Services:
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map((feature, i) => (
@@ -129,10 +133,10 @@ const ServicePageLayout = ({
           {/* Render Children inside the same max-w-5xl container */}
           {children && (
              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.5, delay: 0.2 }}
              >
                  {children}
              </motion.div>
@@ -155,18 +159,30 @@ const ServicePageLayout = ({
                 className="text-xl font-bold text-foreground mb-6 tracking-tight"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                Why Choose Us
+                Why Partner With Us?
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {highlights.map((h) => (
-                  <div
-                    key={h}
-                    className="flex items-start gap-3 text-sm text-[hsl(215_20%_72%)]"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    {h}
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {highlights.map((h) => {
+                  // Check if the highlight has a colon to split into Title and Description
+                  const hasColon = h.includes(":");
+                  const [titlePart, descPart] = hasColon ? h.split(/:(.+)/) : [h, ""];
+                  
+                  return (
+                    <div key={h} className="flex flex-col gap-2">
+                      <div className="flex items-start gap-2">
+                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                         <div>
+                           <span className={hasColon ? "font-semibold text-foreground text-sm block mb-1" : "text-sm text-[hsl(215_20%_72%)]"}>
+                             {titlePart}
+                           </span>
+                           {hasColon && (
+                             <p className="text-sm text-[hsl(215_20%_72%)]">{descPart.trim()}</p>
+                           )}
+                         </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
@@ -185,7 +201,7 @@ const ServicePageLayout = ({
               className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Interested in <span className="text-gradient-cyan">{title}</span>?
+              Ready to <span className="text-gradient-cyan">Elevate Your Business</span>?
             </h2>
             <p className="text-[hsl(215_20%_68%)] mb-8 text-base">
               Get in touch with our team to discuss your requirements and get a tailored proposal.
@@ -195,13 +211,13 @@ const ServicePageLayout = ({
                 href="mailto:info@rhinternational.com"
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-full text-sm font-semibold hover:bg-primary/90 transition-all glow-cyan-sm"
               >
-                Contact Us <ArrowRight className="w-4 h-4" />
+                {primaryCtaText} <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                to="/services"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-medium text-[hsl(215_20%_68%)] hover:text-foreground transition-colors glass-card"
+                to="/contact"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-medium text-[hsl(215_20%_68%)] hover:text-foreground transition-colors glass-card border border-border"
               >
-                View All Services
+                {secondaryCtaText}
               </Link>
             </div>
           </motion.div>

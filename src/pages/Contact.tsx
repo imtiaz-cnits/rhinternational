@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock, Globe, ArrowRight, Sparkles, Building2 } from "lucide-react";
-import { z } from "zod";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -15,10 +15,10 @@ const contactSchema = z.object({
 });
 
 const contactInfo = [
-  { icon: Mail, label: "Email Us", value: "info@rhinternational.com", href: "mailto:info@rhinternational.com", accent: "213 55% 50%" },
-  { icon: Phone, label: "Call Us", value: "+880 1234 567890", href: "tel:+8801234567890", accent: "200 55% 48%" },
-  { icon: MapPin, label: "Head Office", value: "Gulshan, Dhaka, Bangladesh", href: undefined, accent: "260 55% 55%" },
-  { icon: Clock, label: "Working Hours", value: "Sun – Thu, 9AM – 6PM (GMT+6)", href: undefined, accent: "35 80% 55%" },
+  { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com", accent: "213 55% 50%" },
+  { icon: Phone, label: "Call Us", value: "+880 1319-855960", href: "tel:+8801319855960", accent: "200 55% 48%" },
+  { icon: MapPin, label: "Head Office", value: "Zahir Uddin Market, Mirer Bazar, Pubail, Gazipur, Bangladesh", href: undefined, accent: "260 55% 55%" },
+  { icon: Clock, label: "Working Hours", value: "Sat - Thu, 9:00 AM - 6:00 PM (GMT+6)", href: undefined, accent: "35 80% 55%" },
 ];
 
 const offices = [
@@ -122,7 +122,7 @@ const Contact = () => {
               <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 3, repeat: Infinity }}>
                 <Mail className="w-4 h-4 text-primary" />
               </motion.div>
-              <span className="text-xs text-primary font-semibold tracking-wider uppercase">Contact Us</span>
+              <span className="text-xs text-primary font-semibold tracking-wider uppercase">Let's Connect</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
@@ -154,7 +154,7 @@ const Contact = () => {
               transition={{ delay: 0.9, duration: 0.7 }}
               className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
             >
-              Have a project in mind? Reach out to our team and let's build something great together.
+              Got a major project in mind, or need expert consultancy? Drop us a line. Our team is ready to help you build and scale something extraordinary.
             </motion.p>
           </motion.div>
         </div>
@@ -192,9 +192,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                      Send a Message
+                      Send us a Message
                     </h2>
-                    <p className="text-xs text-muted-foreground">We typically respond within 24 hours</p>
+                    <p className="text-xs text-muted-foreground">Fill out the form below, and our team will get back to you within 24 hours with a tailored response.</p>
                   </div>
                 </div>
 
@@ -208,7 +208,7 @@ const Contact = () => {
                     >
                       <label className="block text-[10px] text-muted-foreground font-semibold uppercase tracking-widest mb-2">Name *</label>
                       <input
-                        name="name" value={form.name} onChange={handleChange} placeholder="Your name"
+                        name="name" value={form.name} onChange={handleChange} placeholder="Your full name"
                         onFocus={() => setFocusedField("name")} onBlur={() => setFocusedField(null)}
                         className={inputClass("name")}
                       />
@@ -222,7 +222,7 @@ const Contact = () => {
                     >
                       <label className="block text-[10px] text-muted-foreground font-semibold uppercase tracking-widest mb-2">Email *</label>
                       <input
-                        name="email" value={form.email} onChange={handleChange} placeholder="your@email.com"
+                        name="email" value={form.email} onChange={handleChange} placeholder="your.email@example.com"
                         onFocus={() => setFocusedField("email")} onBlur={() => setFocusedField(null)}
                         className={inputClass("email")}
                       />
@@ -238,7 +238,7 @@ const Contact = () => {
                   >
                     <label className="block text-[10px] text-muted-foreground font-semibold uppercase tracking-widest mb-2">Subject *</label>
                     <input
-                      name="subject" value={form.subject} onChange={handleChange} placeholder="How can we help?"
+                      name="subject" value={form.subject} onChange={handleChange} placeholder="How can we help your business grow?"
                       onFocus={() => setFocusedField("subject")} onBlur={() => setFocusedField(null)}
                       className={inputClass("subject")}
                     />
@@ -253,7 +253,7 @@ const Contact = () => {
                   >
                     <label className="block text-[10px] text-muted-foreground font-semibold uppercase tracking-widest mb-2">Message *</label>
                     <textarea
-                      name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your project..."
+                      name="message" value={form.message} onChange={handleChange} placeholder="Tell us a bit about your project, timeline, or specific requirements..."
                       rows={5}
                       onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)}
                       className={`${inputClass("message")} resize-none`}
@@ -349,7 +349,7 @@ const Contact = () => {
               </motion.div>
               <div className="relative">
                 <p className="text-[10px] text-[hsl(142_70%_55%)] uppercase tracking-widest font-semibold mb-1">WhatsApp</p>
-                <p className="text-sm text-foreground font-medium">Chat with us instantly</p>
+                <p className="text-sm text-foreground font-medium">Fastest way to reach our support team.</p>
               </div>
             </motion.a>
 
@@ -411,7 +411,7 @@ const Contact = () => {
                 Ready to <span className="text-gradient-cyan">Collaborate</span>?
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto mb-8 leading-relaxed">
-                Whether you're a startup or enterprise, we're here to help you scale globally. Let's discuss your next big project.
+                Whether you need flawless e-GP tender support, high-volume commercial printing, or a next-gen digital platform—we have the expertise to make it happen. Let’s start the conversation today.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link

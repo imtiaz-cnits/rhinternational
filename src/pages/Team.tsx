@@ -1,17 +1,17 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Linkedin, Mail, Globe, Users, Award, Target, Heart, ArrowRight, Briefcase, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Briefcase, Globe, Heart, Linkedin, Mail, Sparkles, Target, Users } from "lucide-react";
+import { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useRef, useMemo } from "react";
 
 const teamMembers = [
   {
     name: "MD Abu Sama (Kias)",
     role: "Co-Founder & CEO",
-    bio: "Visionary leader driving RH International's growth across global markets with expertise in B2B solutions, digital transformation, and strategic partnerships.",
+    bio: "As the driving force behind RH International, Abu Sama leads with a simple philosophy: build trust through flawless execution. He oversees our global expansion, ensuring that whether it's navigating complex government tenders or delivering high-end digital solutions, our clients always receive world-class results.",
     initials: "MAS",
-    expertise: ["Business Strategy", "Global Markets", "Digital Innovation"],
+    expertise: ["Global Strategy", "B2B Growth", "Digital Innovation"],
     accent: "213 55% 50%",
   },
 ];
@@ -19,23 +19,23 @@ const teamMembers = [
 const values = [
   {
     icon: Target,
-    title: "Mission-Driven",
-    description: "Every decision is guided by our commitment to delivering measurable impact for our clients worldwide.",
+    title: "Result-Oriented",
+    description: "We don't just talk about goals; we deliver them. Every decision we make is focused on creating a measurable and positive impact on your business's bottom line.",
   },
   {
     icon: Heart,
-    title: "Client-First",
-    description: "We build lasting partnerships by putting our clients' success at the center of everything we do.",
+    title: "Your Growth is Ours",
+    description: "We treat your business like our own. We build lasting partnerships by putting your long-term success above short-term wins.",
   },
   {
     icon: Sparkles,
-    title: "Innovation",
-    description: "Constantly evolving our approach and leveraging cutting-edge solutions to stay ahead of industry trends.",
+    title: "Always Adapting",
+    description: "The global market moves fast, and so do we. From modern tech stacks (like Next.js) to advanced sourcing strategies, we constantly evolve to keep you ahead of the competition.",
   },
   {
     icon: Award,
-    title: "Excellence",
-    description: "We hold ourselves to the highest standards of quality, integrity, and professional expertise.",
+    title: "Zero Compromise",
+    description: "Whether it's printing half a million PVC cards flawlessly or deploying a secure e-commerce platform, we hold ourselves to the highest standard. No shortcuts, just pure quality.",
   },
 ];
 
@@ -244,7 +244,7 @@ const Team = () => {
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            {"Meet the".split("").map((char, i) => (
+            {"The Minds Behind".split("").map((char, i) => (
               <motion.span
                 key={i}
                 className="inline-block text-foreground"
@@ -262,7 +262,7 @@ const Team = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              Visionaries
+              RH International
             </motion.span>
           </h1>
 
@@ -272,7 +272,7 @@ const Team = () => {
             transition={{ delay: 1, duration: 0.7 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            The passionate individuals who make RH International a trusted global partner, driving innovation and excellence across continents.
+            We are more than just a multi-service company. We are a dedicated team of problem-solvers, tech innovators, and global strategists working together to turn your most ambitious business goals into reality.
           </motion.p>
 
           {/* Stats */}
@@ -310,7 +310,7 @@ const Team = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Leadership <span className="text-gradient-cyan">Team</span>
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">Guiding our vision with expertise and passion</p>
+            <p className="text-muted-foreground max-w-lg mx-auto">Driving our global strategy with hands-on expertise and a passion for excellence</p>
           </motion.div>
 
           <div className="flex justify-center">
@@ -344,7 +344,7 @@ const Team = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Our <span className="text-gradient-cyan">Values</span>
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">The principles that define who we are and how we work</p>
+            <p className="text-muted-foreground max-w-lg mx-auto">The core principles that define how we work, how we build software, and how we treat our clients.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -397,10 +397,10 @@ const Team = () => {
 
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                Want to <span className="text-gradient-cyan">Join Us</span>?
+                Want to Build the <span className="text-gradient-cyan">Future with Us?</span>
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto mb-8 leading-relaxed">
-                We're always looking for talented individuals who share our passion for excellence and innovation. Let's build the future together.
+                We are always on the lookout for bold thinkers, tech enthusiasts, and global strategists. If you're passionate about making a real impact, we’d love to hear from you.
               </p>
               <Link
                 to="/contact"

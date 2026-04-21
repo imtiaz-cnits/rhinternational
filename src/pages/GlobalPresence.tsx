@@ -1,9 +1,9 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Building2, MapPin, Phone, Mail, Globe, ArrowRight, Clock, Wifi, Users, TrendingUp } from "lucide-react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, Phone, TrendingUp, Users } from "lucide-react";
 import { useMemo, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const offices = [
   {
@@ -16,30 +16,30 @@ const offices = [
     timezone: "GMT+4",
     established: "2020",
     team: "15+",
-    services: ["Company Formation", "Trade Facilitation", "PRO Services", "Market Advisory"],
+    services: ["Corporate Setup Sourcing", "Trade Business Verification"],
     accent: "213 55% 50%",
   },
   {
     city: "Dhaka, Bangladesh",
     label: "Head Office",
-    address: "Gulshan, Dhaka, Bangladesh",
-    phone: "+880 1234 567890",
+    address: "Zahir Uddin Market, Mirer Bazar, Pubail, Gazipur",
+    phone: "+880 1319-855960",
     email: "info@rhinternational.com",
     highlight: false,
     timezone: "GMT+6",
     established: "2015",
     team: "50+",
-    services: ["Govt Tenders", "Printing Press", "IT Solutions", "Travel Consultation"],
+    services: ["e-GP Tenders", "Commercial Print", "IT & Digital Visa Advisory"],
     accent: "200 55% 48%",
   },
 ];
 
 const countries = [
   { name: "Bangladesh", flag: "🇧🇩", role: "Headquarters & Operations", projects: "80+" },
-  { name: "UAE", flag: "🇦🇪", role: "Regional Hub & Trade", projects: "30+" },
-  { name: "Portugal", flag: "🇵🇹", role: "Immigration Services", projects: "15+" },
-  { name: "Spain", flag: "🇪🇸", role: "Immigration Services", projects: "10+" },
-  { name: "Denmark", flag: "🇩🇰", role: "Immigration Services", projects: "10+" },
+  { name: "UAE", flag: "🇦🇪", role: "MIDDLE EAST SOURCING HUB", projects: "30+" },
+  { name: "Portugal", flag: "🇵🇹", role: "VISA & TRAVEL ADVISORY", projects: "15+" },
+  { name: "Spain", flag: "🇪🇸", role: "VISA & TRAVEL ADVISORY", projects: "10+" },
+  { name: "Denmark", flag: "🇩🇰", role: "VISA & TRAVEL ADVISORY", projects: "10+" },
 ];
 
 const stats = [
@@ -286,7 +286,7 @@ const GlobalPresence = () => (
             transition={{ delay: 1, duration: 0.7 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Strategically positioned across key markets in Asia, the Middle East, and Europe to deliver excellence wherever you operate.
+            We don’t just operate globally; we integrate locally. From Asia to the Middle East and Europe, our strategic hubs ensure your business gets the right support, exactly where you need it.
           </motion.p>
         </motion.div>
 
@@ -324,9 +324,9 @@ const GlobalPresence = () => (
           className="text-center mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Our <span className="text-gradient-cyan">Offices</span>
+            Our <span className="text-gradient-cyan">Strategic Hubs</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">Two strategic hubs powering operations across continents</p>
+          <p className="text-muted-foreground max-w-lg mx-auto">Where global strategy meets local execution. Here are the core hubs powering our worldwide operations.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -360,9 +360,9 @@ const GlobalPresence = () => (
           className="text-center mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Countries We <span className="text-gradient-cyan">Serve</span>
+            Where We <span className="text-gradient-cyan">Make an Impact</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">Delivering excellence across borders and time zones</p>
+          <p className="text-muted-foreground max-w-lg mx-auto">Delivering excellence across borders, cultures, and time zones.</p>
         </motion.div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5">

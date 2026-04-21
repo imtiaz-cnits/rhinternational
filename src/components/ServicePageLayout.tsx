@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import type { LucideIcon } from "lucide-react";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 interface Feature {
   title: string;
@@ -17,6 +17,7 @@ interface ServicePageLayoutProps {
   icon: LucideIcon;
   features: Feature[];
   highlights?: string[];
+  children?: React.ReactNode;
 }
 
 const ServicePageLayout = ({
@@ -26,6 +27,7 @@ const ServicePageLayout = ({
   icon: Icon,
   features,
   highlights,
+  children,
 }: ServicePageLayoutProps) => {
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -87,7 +89,7 @@ const ServicePageLayout = ({
             className="text-2xl font-bold text-foreground mb-8 tracking-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            What's Included
+            Our Core Tender Services
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map((feature, i) => (
@@ -123,6 +125,19 @@ const ServicePageLayout = ({
               </motion.div>
             ))}
           </div>
+
+          {/* Render Children inside the same max-w-5xl container */}
+          {children && (
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+             >
+                 {children}
+             </motion.div>
+          )}
+
         </div>
       </section>
 

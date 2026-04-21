@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
-import { MousePointer2 } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useMemo, useRef, Suspense, useEffect } from "react";
+import { Html, OrbitControls, Sphere, Stars } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Sphere, Html, Stars } from "@react-three/drei";
-import { ArrowRight, ArrowUpRight, TrendingUp, BarChart3, Award, Printer, Monitor, Plane } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, MousePointer2 } from "lucide-react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Link } from "react-router-dom";
 import * as THREE from "three";
 
 // --- Surface Image Card ---
@@ -354,7 +353,7 @@ const HeroSection = () => {
               className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-7 tracking-[-0.02em]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {"We Make".split("").map((char, i) => (
+              {"We Make".split(" ").map((char, i) => (
                 <motion.span
                   key={`e-${i}`}
                   className="inline-block text-foreground"

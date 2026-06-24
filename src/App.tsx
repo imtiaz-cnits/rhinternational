@@ -27,6 +27,8 @@ import AdminOrders from "./pages/admin/AdminOrders.tsx";
 import AdminTickets from "./pages/admin/AdminTickets.tsx";
 import AdminLeads from "./pages/admin/AdminLeads.tsx";
 import AutoScrollTop from "./components/AutoScrollTop.tsx";
+import ABMRezaProfile from "./pages/profile/abm-reza/page.tsx";
+import AbuSamaProfile from "./pages/profile/abu-sama-kias/page.tsx";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,10 @@ const App = () => (
               <Route path="/services/dubai-office" element={<DubaiOffice />} />
               <Route path="/services/digital-service" element={<DigitalService />} />
               <Route path="/services/locations" element={<Locations />} />
+
+              {/* Profile Pages */}
+              <Route path="/profile/abm-reza" element={<ABMRezaProfile />} />
+              <Route path="/profile/abu-sama-kias" element={<AbuSamaProfile />} />
 
               {/* Admin Dashboard */}
               <Route path="/admin" element={<AdminLayout />}>

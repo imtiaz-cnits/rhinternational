@@ -12,9 +12,10 @@ const teamMembers = [
     bio: "As the visionary Founder of RH International, ABM Reza laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
     initials: "AR",
     image: "/images/team/abm-reza.jpg",
-    objectPosition: "center 10%",
+    objectPosition: "center center",
     expertise: ["Visionary Leadership", "Global Trade", "Strategic Partnerships"],
     accent: "180 60% 45%",
+    profileLink: "/profile/abm-reza",
   },
   {
     name: "Md Abu Sama Kias",
@@ -22,9 +23,10 @@ const teamMembers = [
     bio: "As the driving force behind RH International, Abu Sama leads with a simple philosophy: build trust through flawless execution. He oversees our global expansion, ensuring that whether it's navigating complex government tenders or delivering high-end digital solutions, our clients always receive world-class results.",
     initials: "MAS",
     image: "/images/team/abu-sama.jpg",
-    objectPosition: "center 12%",
+    objectPosition: "center center",
     expertise: ["Global Strategy", "B2B Growth", "Digital Innovation"],
     accent: "213 55% 50%",
+    profileLink: "/profile/abu-sama-kias",
   },
 ];
 
@@ -138,7 +140,7 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
           {/* Avatar */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="mx-auto mb-8 relative"
+            className="mx-auto mb-8 relative w-36 h-36"
           >
             {/* Rotating ring */}
             <motion.div
@@ -206,7 +208,7 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-3">
+          <div className="flex justify-center gap-3 mb-6">
             {[
               { icon: Linkedin, label: "LinkedIn" },
               { icon: Mail, label: "Email" },
@@ -223,6 +225,15 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
               </motion.button>
             ))}
           </div>
+
+          {/* View Profile Button */}
+          <Link
+            to={member.profileLink}
+            className="group inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl border border-primary/25 bg-primary/5 text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.25)]"
+          >
+            View Full Profile
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
       </div>
     </motion.div>
